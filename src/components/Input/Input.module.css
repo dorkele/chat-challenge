@@ -1,0 +1,10 @@
+.msg_container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #0198e1;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+}
