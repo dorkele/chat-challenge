@@ -1,29 +1,27 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import styles from "./MsgList.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { getChatMessages } from "../../redux/actions";
 
 export default function MsgList() {
-    const [messages, setMessages] = useState([]);
+    const dispatch = useDispatch();
+    const chatMessages = useSelector(
+        (state) => state.messages && state.messages
+    );
     useEffect(() => {
-        axios({
-            method: "get",
-            url:
-                "https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0/?since=1521096352339&limit=10&token=vmg7caZZVF24",
-        })
-            .then(({ data }) => {
-                console.log(data);
-                setMessages(data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        dispatch(getChatMessages());
     }, []);
 
+    console.log("chatMsgs: ", chatMessages);
     return (
-        <div>
-            {messages &&
-                messages.map((message) => {
+        <React.Fragment>
+            {chatMessages &&
+                chatMessages.map((message) => {
                     return (
-                        <div key={message._id}>
+                        <div
+                            key={message._id}
+                            className={styles.comment_container}
+                        >
                             <div>{message.author}</div>
                             <div>{message.message}</div>
                             <div className="black-font name-date">
@@ -32,6 +30,6 @@ export default function MsgList() {
                         </div>
                     );
                 })}
-        </div>
+        </React.Fragment>
     );
 }
