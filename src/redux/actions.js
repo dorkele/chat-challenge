@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_LAST_TEN_MESSAGES } from "./types";
+import { GET_LAST_TEN_MESSAGES, ADD_MESSAGE } from "./types";
 
 export function getChatMessages() {
     return axios({
@@ -19,24 +19,26 @@ export function getChatMessages() {
         });
 }
 
-// useEffect(() => {
-//     if (newMessage) {
-//         axios({
-//             method: "post",
-//             url:
-//                 "https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0",
-//             headers: {
-//                 "Content-Type": "application/json",
-//                 token: "vmg7caZZVF24",
-//             },
-//             data: { message: newMessage, author: "dora" },
-//         })
-//             .then((response) => {
-//                 setMessages([...messages, newMessage]);
-//                 console.log(response.data);
-//             })
-//             .catch(function (error) {
-//                 console.log(error);
-//             });
-//     }
-// }, [newMessage, messages]);
+export default function addMessage(message) {
+    return axios({
+        method: "post",
+        url: "https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0/",
+        headers: {
+            "Content-Type": "application/json",
+            token: "vmg7caZZVF24",
+        },
+        data: { message: message, author: "dora" },
+    })
+        .then(({ data }) => {
+            console.log("TU SAM");
+            console.log(data);
+            return {
+                type: ADD_MESSAGE,
+                newMessage: data,
+            };
+        })
+
+        .catch(function (error) {
+            console.log(error);
+        });
+}
