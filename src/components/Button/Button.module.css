@@ -1,6 +1,16 @@
-.orange_button {
+.button {
+    height: 90%;
+    width: 20%;
     color: white;
+    margin: 8px 0px;
     background-color: tomato;
     border: tomato;
     border-radius: 5px;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+    .button {
+        width: 25%;
+    }
 }

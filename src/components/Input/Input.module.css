@@ -1,10 +1,31 @@
-.msg_container {
-    position: absolute;
+.fixed_container {
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #0198e1;
     height: 10%;
+    padding: 8px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    background-color: #0198e1;
+}
+
+.input_container {
+    height: 100%;
+    width: 640px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
+    width: 80%;
+    height: 90%;
+    margin: 8px;
+    padding: 8px;
+    max-height: 100%;
+    border-radius: 5px;
+    border: 2px solid #296d98;
+    font-size: 14px;
 }
