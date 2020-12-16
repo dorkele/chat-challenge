@@ -5,7 +5,7 @@ import MsgList from "../MsgList/MsgList";
 
 export default function App() {
     return (
-        <div>
+        <div className={styles.app_container}>
             <MsgList />
             <Input />
         </div>
