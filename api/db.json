@@ -1,0 +1,28 @@
+{
+    "messages": [
+        {
+            "message": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+            "author": "dora",
+            "timestamp": 1608142819958,
+            "id": "xD0odKL"
+        },
+        {
+            "message": "Aenean massa.",
+            "author": "dora",
+            "timestamp": 1608147001843,
+            "id": "OO23RSu"
+        },
+        {
+            "message": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+            "author": "dora",
+            "timestamp": 1608147014177,
+            "id": "L2udPtG"
+        },
+        {
+            "message": "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.",
+            "author": "dora",
+            "timestamp": 1608147554276,
+            "id": "JCgNNoB"
+        }
+    ]
+}
