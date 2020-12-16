@@ -1,2 +1,2 @@
-export const GET_LAST_TEN_MESSAGES = "GET_LAST_TEN_MESSAGES";
+export const GET_MESSAGES = "GET_MESSAGES";
 export const ADD_MESSAGE = "ADD_MESSAGE";

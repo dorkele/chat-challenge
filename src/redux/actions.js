@@ -1,16 +1,12 @@
 import axios from "axios";
-import { GET_LAST_TEN_MESSAGES, ADD_MESSAGE } from "./types";
+import { GET_MESSAGES, ADD_MESSAGE } from "./types";
 
 export function getChatMessages() {
-    return axios({
-        method: "get",
-        url:
-            "https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0/?since=1521096352339&limit=10&token=vmg7caZZVF24",
-    })
+    return axios
+        .get("http://localhost:3001/messages")
         .then(({ data }) => {
-            console.log(data);
             return {
-                type: GET_LAST_TEN_MESSAGES,
+                type: GET_MESSAGES,
                 messages: data,
             };
         })
@@ -20,24 +16,24 @@ export function getChatMessages() {
 }
 
 export default function addMessage(message) {
-    return axios({
-        method: "post",
-        url: "https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0/",
-        headers: {
-            "Content-Type": "application/json",
-            token: "vmg7caZZVF24",
-        },
-        data: { message: message, author: "dora" },
-    })
-        .then(({ data }) => {
-            console.log("TU SAM");
-            console.log(data);
+    const data = {
+        message: message,
+        author: "dora",
+        timestamp: Date.now(),
+    };
+
+    const headers = {
+        "Content-Type": "application/json",
+    };
+
+    return axios
+        .post("http://localhost:3001/messages", data, { headers: headers })
+        .then((response) => {
             return {
                 type: ADD_MESSAGE,
-                newMessage: data,
+                newMessage: response.data,
             };
         })
-
         .catch(function (error) {
             console.log(error);
         });
