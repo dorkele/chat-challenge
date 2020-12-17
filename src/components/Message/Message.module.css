@@ -26,8 +26,8 @@
 }
 
 @media screen and (max-width: 768px) {
-    .comment_container,
-    .your_comment {
+    .comment_container_other_user,
+    .comment_container_this_user {
         max-width: 240px;
     }
 }
