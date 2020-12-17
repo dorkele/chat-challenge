@@ -1,9 +1,11 @@
 import axios from "axios";
-import { GET_MESSAGES, ADD_MESSAGE } from "./types";
+import { GET_MESSAGES, ADD_MESSAGE, ADD_USER, GET_USER } from "./types";
+
+const api = "http://localhost:3001/messages";
 
 export function getChatMessages() {
     return axios
-        .get("http://localhost:3001/messages")
+        .get(api)
         .then(({ data }) => {
             return {
                 type: GET_MESSAGES,
@@ -15,10 +17,10 @@ export function getChatMessages() {
         });
 }
 
-export default function addMessage(message) {
+export function addMessage(message, user) {
     const data = {
         message: message,
-        author: "dora",
+        author: user,
         timestamp: Date.now(),
     };
 
@@ -27,14 +29,27 @@ export default function addMessage(message) {
     };
 
     return axios
-        .post("http://localhost:3001/messages", data, { headers: headers })
-        .then((response) => {
+        .post(api, data, { headers: headers })
+        .then(({ data }) => {
             return {
                 type: ADD_MESSAGE,
-                newMessage: response.data,
+                newMessage: data,
             };
         })
-        .catch(function (error) {
+        .catch((error) => {
             console.log(error);
         });
+}
+
+export function addUser(user) {
+    return {
+        type: ADD_USER,
+        user: user,
+    };
+}
+
+export function getUser() {
+    return {
+        type: GET_USER,
+    };
 }
