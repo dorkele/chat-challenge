@@ -1,0 +1,33 @@
+.comment_container_other_user,
+.comment_container_this_user {
+    width: max-content;
+    border: solid 1px silver;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    max-width: 420px;
+    margin-bottom: 16px;
+    margin-left: 24px;
+    margin-right: 24px;
+    padding: 16px;
+}
+
+.comment_container_this_user {
+    align-self: flex-end;
+    background-color: #fffebe;
+}
+
+.message {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.info {
+    color: silver;
+}
+
+@media screen and (max-width: 768px) {
+    .comment_container,
+    .your_comment {
+        max-width: 240px;
+    }
+}

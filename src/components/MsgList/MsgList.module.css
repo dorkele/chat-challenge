@@ -9,34 +9,12 @@
 
 .comments_container {
     width: 640px;
-}
-
-.comment_container {
-    width: max-content;
-    border: solid 2px silver;
-    border-radius: 5px;
-    background-color: whitesmoke;
-    max-width: 420px;
-    margin-bottom: 16px;
-    margin-left: 24px;
-    margin-right: 24px;
-    padding: 16px;
-}
-
-.message {
-    margin-top: 2px;
-    margin-bottom: 2px;
-}
-
-.info {
-    color: silver;
+    display: flex;
+    flex-direction: column;
 }
 
 @media screen and (max-width: 768px) {
     .comments_container {
         width: 100%;
-    }
-    .comment_container {
-        max-width: 240px;
     }
 }
