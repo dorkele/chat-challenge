@@ -1,11 +1,9 @@
-import axios from "axios";
+import messages, { token } from "../api/messages";
 import { GET_MESSAGES, ADD_MESSAGE, ADD_USER, GET_USER } from "./types";
 
-const api = "http://localhost:3001/messages";
-
 export function getChatMessages() {
-    return axios
-        .get(api)
+    return messages
+        .get(`/?token=${token}`)
         .then(({ data }) => {
             return {
                 type: GET_MESSAGES,
@@ -21,15 +19,15 @@ export function addMessage(message, user) {
     const data = {
         message: message,
         author: user,
-        timestamp: Date.now(),
     };
 
     const headers = {
         "Content-Type": "application/json",
+        token: token,
     };
 
-    return axios
-        .post(api, data, { headers: headers })
+    return messages
+        .post("/", data, { headers: headers })
         .then(({ data }) => {
             return {
                 type: ADD_MESSAGE,

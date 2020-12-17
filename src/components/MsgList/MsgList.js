@@ -38,7 +38,7 @@ export default function MsgList() {
             <div className={styles.comments_container}>
                 {chatMessages &&
                     chatMessages.map((message) => {
-                        return <Message message={message} key={message.id} />;
+                        return <Message message={message} key={message._id} />;
                     })}
             </div>
         </div>
