@@ -1,11 +1,10 @@
-import React, { useState, useRef } from "react";
-import styles from "./Input.module.css";
+import React, { useState } from "react";
+import styles from "./MessageInput.module.css";
 import Button from "../Button/Button";
-import addMessage from "../../redux/actions";
+import { addMessage } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
-export default function Input() {
-    const elemRef = useRef();
+export default function MessageInput({ user }) {
     const [inputValue, setInputValue] = useState("");
 
     const dispatch = useDispatch();
@@ -20,9 +19,10 @@ export default function Input() {
         }
     };
 
+    //add message into state after a click or enter key press
     const handleClick = () => {
-        inputValue && dispatch(addMessage(inputValue));
-        elemRef.current.value = "";
+        inputValue && dispatch(addMessage(inputValue, user));
+        setInputValue("");
     };
 
     return (
@@ -31,9 +31,9 @@ export default function Input() {
                 <input
                     className={styles.input}
                     type="text"
-                    placeholder="message"
+                    placeholder="Message"
                     onChange={handleInput}
-                    ref={elemRef}
+                    value={inputValue}
                     onKeyPress={(e) => {
                         keyCheck(e);
                     }}
