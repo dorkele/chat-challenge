@@ -19,9 +19,11 @@ export default function MessageInput({ user }) {
         }
     };
 
+    const time = Date.now();
+
     //add message into state after a click or enter key press
     const handleClick = () => {
-        inputValue && dispatch(addMessage(inputValue, user));
+        inputValue && dispatch(addMessage(inputValue, user, time));
         setInputValue("");
     };
 

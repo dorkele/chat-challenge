@@ -1,9 +1,9 @@
-import messages, { token } from "../api/messages";
+import messages from "../api/messages";
 import { GET_MESSAGES, ADD_MESSAGE, ADD_USER, GET_USER } from "./types";
 
 export function getChatMessages() {
     return messages
-        .get(`/?token=${token}`)
+        .get("/")
         .then(({ data }) => {
             return {
                 type: GET_MESSAGES,
@@ -15,19 +15,19 @@ export function getChatMessages() {
         });
 }
 
-export function addMessage(message, user) {
+export function addMessage(message, user, time) {
     const data = {
         message: message,
         author: user,
+        timestamp: time,
     };
 
     const headers = {
         "Content-Type": "application/json",
-        token: token,
     };
 
     return messages
-        .post("/", data, { headers: headers })
+        .post("/", data, { headers })
         .then(({ data }) => {
             return {
                 type: ADD_MESSAGE,
