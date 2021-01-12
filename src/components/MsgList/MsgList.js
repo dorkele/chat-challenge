@@ -1,16 +1,21 @@
 import React, { useEffect, useRef } from "react";
 import styles from "./MsgList.module.css";
-import { useSelector, useDispatch } from "react-redux";
-import { getChatMessages } from "../../redux/actions";
+// import { useSelector, useDispatch } from "react-redux";
+// import { getChatMessages } from "../../redux/actions";
 import Message from "../Message/Message";
 //import { store } from "../../index";
+import useSWR from "swr";
+
+import messages from "../../api/messages";
 
 export default function MsgList() {
-    const dispatch = useDispatch();
+    const fetcher = (url) => messages.get(url).then((res) => res.data);
+    // const dispatch = useDispatch();
     const elemRef = useRef();
-    const chatMessages = useSelector((state) => state && state.messages);
-    const msgInterval = 5000;
+    // const chatMessages = useSelector((state) => state && state.messages);
+    // const msgInterval = 5000;
 
+    const { data, error } = useSWR("/", fetcher);
     //const previousChatMessages = usePrevious(chatMessages);
 
     //get chat messages from state after component mounts
@@ -43,8 +48,8 @@ export default function MsgList() {
     return (
         <div ref={elemRef} className={styles.container}>
             <div className={styles.comments_container}>
-                {chatMessages &&
-                    chatMessages.map((message) => {
+                {data &&
+                    data.map((message) => {
                         return <Message message={message} key={message.id} />;
                     })}
             </div>
