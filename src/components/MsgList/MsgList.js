@@ -15,6 +15,7 @@ export default function MsgList() {
     // const chatMessages = useSelector((state) => state && state.messages);
     // const msgInterval = 5000;
 
+    // need to check if i can exchange data fetching to use useswr hooks
     const { data, error } = useSWR("/", fetcher);
     //const previousChatMessages = usePrevious(chatMessages);
 
